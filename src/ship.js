@@ -1,18 +1,18 @@
 const Ship = (shipLength) => {
-    let timeHit = 0
+    let timesHit = 0
     let sunk = false
 
     function hit () {
-        timeHit++;
-        return timeHit
+        timesHit++;
+        return this
     }
 
     function isSunk () {
-        if(shipLength === timeHit) return true;
+        if(shipLength === timesHit) return true;
         else return false
     }
 
-    return {sunk, shipLength, hit, isSunk}
+    return {timesHit, sunk, shipLength, hit, isSunk}
 }
 
 // const longShip = Ship(5)
