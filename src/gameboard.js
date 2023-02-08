@@ -1,28 +1,24 @@
 const Ship = require("./ship")
 
-
 const Gameboard = () => {
-    
-    let board = []
-    
-    function createBoard () {
+
+    let board = (() => {
         //creates row
+        const arr = [];
         for(let i = 0; i<=9; i++){
-            board.push([])
+            arr.push([])
             //creates columns
             for(let j = 0; j<=9; j++)
-                board[i].push(false)
+                arr[i].push(false)
         }
+        
+        return arr
+    })()
 
-        return board
-    }
 
     function placeAShip (ship, coords, direction = 'row') {
         ship.shipLength
         let [coordX, coordY] = coords
-        
-
-        console.log(coordX, coordY)
         
         if(direction === 'row'){
             // the size of the ship + x coords can not be greater than 10, otherwise the ship is out of the board
@@ -30,6 +26,7 @@ const Gameboard = () => {
             else{
                 for(let i=0; i < ship.shipLength; i++){
                     board[coordX][coordY] = true
+                    ship.coords.push([coordX, coordY])
                     coordX++
                 }
             }
@@ -39,6 +36,7 @@ const Gameboard = () => {
             else{
                 for(let i=0; i < ship.shipLength; i++){
                     board[coordX][coordY] = true
+                    ship.coords.push([coordX, coordY])
                     coordY++
                 }
             }
@@ -75,7 +73,6 @@ const Gameboard = () => {
     }
 
     return {
-        createBoard,
         placeAShip,
         receiveAttack,
         allShipsAreSunk,
@@ -84,16 +81,18 @@ const Gameboard = () => {
 
 }
 
-// const player1 = Gameboard()
+const player1 = Gameboard()
 // player1.createBoard()
 
-// const newShip = Ship(5)
-// player1.placeAShip(newShip, [1,2])
+const newShip = Ship(5)
+player1.placeAShip(newShip, [1,2])
 
-// player1.receiveAttack([2,3])
-// console.log(player1.receiveAttack([2,2]))
-// console.log(player1.allShipsAreSunk())
+player1.receiveAttack([2,3])
+console.log(player1.receiveAttack([2,2]))
+console.log(player1.allShipsAreSunk())
 
-Gameboard().isBoardEmpty()
+console.log(newShip.coords)
+
+// Gameboard().isBoardEmpty()
 
 module.exports = Gameboard

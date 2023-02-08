@@ -1,6 +1,7 @@
 const Ship = (shipLength) => {
     let timesHit = 0
     let sunk = false
+    let coords = []     //contains the coords of this ship
 
     function hit () {
         timesHit++;
@@ -12,7 +13,8 @@ const Ship = (shipLength) => {
         else return false
     }
 
-    return {timesHit, sunk, shipLength, hit, isSunk}
+
+    return {timesHit, sunk, shipLength, hit, isSunk, coords}
 }
 
 // const longShip = Ship(5)
