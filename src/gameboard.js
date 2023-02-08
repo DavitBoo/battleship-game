@@ -11,7 +11,7 @@ const Gameboard = () => {
             for(let j = 0; j<=9; j++)
                 arr[i].push(false)
         }
-        
+
         return arr
     })()
 
@@ -63,14 +63,14 @@ const Gameboard = () => {
         return false
     }
 
-    function isBoardEmpty () {
-        console.log(board)
-        for(let i = 0; i<=9; i++){
-            for(let j = 0; j<=9; j++)
-                if (!board[i][j] === false) return false 
-        }
-        return true  //board is empty
-    }
+    // function isEmpty (x, y, orientation, length) {
+    //     console.log(board)
+    //     for(let i = 0; i<=9; i++){
+    //         for(let j = 0; j<=9; j++)
+    //             if (!board[i][j] === false) return false 
+    //     }
+    //     return true  //board is empty
+    // }
 
     return {
         placeAShip,

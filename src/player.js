@@ -31,3 +31,5 @@ const Player = () => {
 
 const player = Player()
 console.log(player.randomShoot())
+
+module.exports = Player;
