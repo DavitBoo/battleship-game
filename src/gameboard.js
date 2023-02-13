@@ -115,25 +115,23 @@ const Gameboard = () => {
     }
 
     function receiveAttack (x, y) {
-        const array = []
-        array.push(x)
-        array.push(y)
+
         if(board[x][y] === true){ 
             // hits() el barco tocado
             ships.forEach(ship => {
                 ship.coords.forEach(coord => {
-                    console.log(coord + ' ' + array)
-                    if(coord[0] === array[0] && coord[1] === array[1]){
+                    if(coord[0] === x && coord[1] === y){
                         ship.hit()
                     }
                 })    
             })
-        
+            board[x][y] = 'hit'
             return 'hit'
             // return 'hit'
-        }else{
+        }else if(board[x][y] === false){
+            board[x][y] = 'miss'
             return 'miss'
-        }
+        }else return undefined
 
     }
 
@@ -148,12 +146,28 @@ const Gameboard = () => {
 
     }
 
+    function randomShips () {
+        let x, y, d 
+        const direction = ['h', 'v'], size = [1, 2, 3, 4, 5]
+        for(let i=0; i < size.length; i++){
+           do {
+                x = Math.floor(Math.random() * 10)
+                y = Math.floor(Math.random() * 10)
+                d = Math.floor(Math.random() * 2)
+                console.log(checkBoard(x, y, direction[d], size[i]))
+         } while (!checkBoard(x, y, direction[d], size[i]));
+           console.log(`${x}, ${y}, ${direction[d]}, ${size[i]}}`)
+        placeShip(x, y, direction[d], size[i])
+        }   
+    }
+
 
     return {
         allSunk,
         checkBoard,
         placeShip,
-        receiveAttack
+        receiveAttack,
+        randomShips
     }
 }
 

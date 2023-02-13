@@ -78,3 +78,16 @@ test('if ships are sunk with three out of three sunk', () => {
   attacks.forEach((attack) => board.receiveAttack(attack[0], attack[1]));
   expect(board.allSunk()).toEqual(true);
 });
+
+test('attacking the same location twice', () => {
+  const board = Gameboard();
+  board.placeShip(0, 0, 'v', 3);
+  board.receiveAttack(0, 1);
+  expect(board.receiveAttack(0, 1)).toEqual(undefined);
+});
+
+test.only('populate board with random ships', () => {
+  const board = Gameboard();
+  board.randomShips();
+  expect(board.allSunk()).toEqual(false);
+});
