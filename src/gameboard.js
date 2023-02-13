@@ -2,6 +2,8 @@ const Ship = require("./ship");
 
 const Gameboard = () => {
 
+    const ships = []
+
     const board = (() => {
         const arr = [];
         for (let i = 0; i < 10; i++) {
@@ -19,14 +21,23 @@ const Gameboard = () => {
     //I have not used arrow functions here,  because they do not have their own "this"
     //adding "this" to the function it returns the global object, so you can call after the methos inside Gameboard
     function placeShip (x, y, direction, size)  {
+        const newShip = Ship(size)
         if(validPosition(x, y, direction, size)){ 
             if(direction === 'h'){
-                for(let i = x; i < x + size; i++) board[i][y] = true
+                for(let i = x; i < x + size; i++) {
+                    board[i][y] = true
+                    newShip.coords.push([i,y])
+                }
             }else if (direction === 'v'){
-                for(let j = y; j < y + size; j++) board[x][j] = true
+                for(let j = y; j < y + size; j++) {
+                    board[x][j] = true
+                    newShip.coords.push([x,j])
+
+                }
             }
+            ships.push(newShip)
         }
-        
+
         return this
     }
 
@@ -104,9 +115,20 @@ const Gameboard = () => {
     }
 
     function receiveAttack (x, y) {
-
+        const array = []
+        array.push(x)
+        array.push(y)
         if(board[x][y] === true){ 
             // hits() el barco tocado
+            ships.forEach(ship => {
+                ship.coords.forEach(coord => {
+                    console.log(coord + ' ' + array)
+                    if(coord[0] === array[0] && coord[1] === array[1]){
+                        ship.hit()
+                    }
+                })    
+            })
+        
             return 'hit'
             // return 'hit'
         }else{
@@ -116,7 +138,19 @@ const Gameboard = () => {
     }
 
 
+    function allSunk () {
+        let isAnyFloating = true
+        ships.forEach(ship => {
+            if(ship.isSunk() === false) isAnyFloating = false
+        })
+
+        return isAnyFloating
+
+    }
+
+
     return {
+        allSunk,
         checkBoard,
         placeShip,
         receiveAttack
