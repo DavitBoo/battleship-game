@@ -1,0 +1,119 @@
+@import url('https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&display=swap');
+
+html {
+    box-sizing: border-box;
+  }
+  
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+  
+body {
+    font-family: sans-serif;
+    margin: 0;
+    background-image: linear-gradient(260deg, #4e88ae 0%, #ca99d3 100%);
+}
+
+h1{
+    font-family: 'Mochiy Pop One', sans-serif;
+    font-size: 4rem;
+    text-align: center;
+    color: #fff;
+    text-transform: uppercase;
+    text-shadow: 5px 5px 6px #0000009e;
+}
+ 
+button{
+    color:white;
+    font-weight: 100;
+    letter-spacing: 2px;
+    text-decoration: none;
+    background:rgba(0,0,0,0.2);
+    padding:20px 35px;
+    border: none;
+    text-transform: uppercase;
+    font-weight: 600;
+    transition:all 0.2s;
+    cursor: pointer;
+    border-top: 3px solid #0000002c;
+    border-right: 3px solid #3a3a3a;
+    border-bottom: 3px solid #3a3a3a;
+    border-left: 3px solid #0000002c;
+    border-radius: 1px;
+}
+
+button:hover {
+    background:rgba(0,0,0,0.3);
+    border-top: 4px solid #0000002c;
+    border-right: 4px solid #3a3a3a;
+    border-bottom: 4px solid #3a3a3a;
+    border-left: 4px solid #0000002c;
+  }
+
+
+  svg{
+    color: #000;
+  }
+
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 3rem;
+ } 
+
+
+.board-container{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    padding:50px;
+    gap: 8rem;
+    flex-wrap: wrap;
+}
+
+.board{
+    height: 350px;
+    width: 350px;
+    border: 1px solid #000;
+    background-color: rgba(0,0,0,0.2);;
+    border-top: 3px solid #0000002c;
+    border-right: 3px solid #3a3a3a;
+    border-bottom: 3px solid #3a3a3a;
+    border-left: 3px solid #0000002c;
+    border-radius: 1px;
+
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+}
+
+
+.created-by{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.position{
+    background-color: #00000075;
+    padding: 10px;
+    border: 1px solid #ffffffae;
+    width: 100%;
+    
+}
+
+.position:hover{
+    color: #fff;
+    background: url('crosshairs-gps.svg');
+    background-color: #ffffff75;
+}
+
+.position.miss{
+    background: blue;
+}
+
+.position.hit{
+    background: red;
+}
