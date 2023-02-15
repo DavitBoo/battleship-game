@@ -104,16 +104,16 @@ button:hover {
     
 }
 
-.position:hover{
+#board-cpu .position:hover{
     color: #fff;
     background: url('crosshairs-gps.svg');
     background-color: #ffffff75;
 }
 
 .position.miss{
-    background: blue;
+    background-color: #72727247;
 }
 
 .position.hit{
-    background: red;
+    background: rgb(211, 10, 10);
 }

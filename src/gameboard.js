@@ -10,13 +10,11 @@ const Gameboard = () => {
           const row = [];
           arr.push(row);
           for (let j = 0; j < 10; j++) {
-            const cell = false;
-            row.push(cell);
+            row.push(false);
           }
         }
         return arr;
       })();
-
 
     //I have not used arrow functions here,  because they do not have their own "this"
     //adding "this" to the function it returns the global object, so you can call after the methos inside Gameboard
@@ -42,16 +40,8 @@ const Gameboard = () => {
     }
 
     const validPosition = (x, y, direction, size) => {
-        if(direction === 'h'){
-            // the size of the ship + x coords can not be greater than 10, otherwise the ship is out of the board
-            if(x + size > 10) return false
-            
-        }else if(direction === 'v'){
-            // the size of the ship + y coords can not be greater than 10, otherwise the ship is out of the board
-            if(y + size > 10) return false 
-            
-        }
-        
+        if(direction === "h" && x + size > 10) return false          
+        if(direction === "v" && y + size > 10) return false 
         return true
     }
 
@@ -135,7 +125,6 @@ const Gameboard = () => {
 
     }
 
-
     function allSunk () {
         let isAnyFloating = true
         ships.forEach(ship => {
@@ -161,9 +150,9 @@ const Gameboard = () => {
         }   
     }
 
-
     return {
         allSunk,
+        board,
         checkBoard,
         placeShip,
         receiveAttack,

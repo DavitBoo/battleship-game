@@ -89,5 +89,6 @@ test('attacking the same location twice', () => {
 test.only('populate board with random ships', () => {
   const board = Gameboard();
   board.randomShips();
+  console.log(board.board)
   expect(board.allSunk()).toEqual(false);
 });
