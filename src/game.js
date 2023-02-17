@@ -8,7 +8,7 @@ const player = Player(cpuBoard);
 const cpu = Player(playerBoard);
 
 export const startGame = () => {
-    
+
     playerBoard.randomShips();
     cpuBoard.randomShips();
 

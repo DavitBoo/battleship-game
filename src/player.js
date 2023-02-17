@@ -22,7 +22,6 @@ const Player = board => {
     // }
 
     const attack = (coords = randomNum()) => {
-        console.log(coords)
         const [x,y] = allTheCoords.splice(coords, 1)[0]
         let result = board.receiveAttack(x, y)
         return {result, x, y}

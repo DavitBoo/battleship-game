@@ -4,12 +4,18 @@ const Ship = (shipLength) => {
     let coords = []     //contains the coords of this ship
 
     function hit () {
-        timesHit++;
+        this.timesHit++;
+        //timesHit++
         return this
     }
 
     function isSunk () {
-        if(shipLength === timesHit) return true;
+
+        console.log(shipLength === this.timesHit)
+        if(shipLength === this.timesHit) {
+            sunk = true
+            return true;
+        }
         else return false
     }
 
