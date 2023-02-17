@@ -24,27 +24,28 @@ export const createBoard = gameboardsInfo  =>  {
     
 }
 
+const handleClick = (coord) => {
+    let clickedCoords = coord.dataset.coords
+    let xy = clickedCoords.split('-')
+    if(!coord.classList.contains("hit") && !coord.classList.contains("miss")){
+        let result = playPlayer(xy)
+        if (result === "hit") {
+          coord.classList.add("hit")
+        } else {
+          coord.classList.add("miss")
+        }
+        gameLoop();
+    }
+  }
 
-export const boardCoordinate  = board => {
-    const coordinates  = document.querySelectorAll('#board-cpu .position')
-    coordinates.forEach(coord => {
-        coord.addEventListener('click', () => {
-            let clickedCoords = coord.dataset.coords
-            let xy = clickedCoords.split('-')
-            
-            //const [x, y] = xy
-            //let result = board.receiveAttack(x, y)
-            let result = playPlayer(xy)
-            if (result === "hit") {
-                coord.classList.add("hit")
-            } else {
-                coord.classList.add("miss")
-            }
-            gameLoop();
-        })
+  let coordinatesBoardCPU  = document.querySelectorAll('#board-cpu .position')
 
+  export const boardCoordinate  = board => {
+    coordinatesBoardCPU  = document.querySelectorAll('#board-cpu .position')
+    coordinatesBoardCPU.forEach(coord => {
+      coord.addEventListener('click', () => handleClick(coord))
     })
-}
+  }
 
 
 export const leftBoardAttack = (result, x ,y) => {
@@ -57,3 +58,6 @@ export const leftBoardAttack = (result, x ,y) => {
     }
 }
 
+export const gameWonBy = winner => {
+    alert(`${winner} won the game`)
+}

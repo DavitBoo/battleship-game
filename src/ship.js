@@ -10,8 +10,6 @@ const Ship = (shipLength) => {
     }
 
     function isSunk () {
-
-        console.log(shipLength === this.timesHit)
         if(shipLength === this.timesHit) {
             sunk = true
             return true;

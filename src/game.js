@@ -1,6 +1,8 @@
-const { createBoard, boardCoordinate, leftBoardAttack } = require("./display");
+const { createBoard, boardCoordinate, leftBoardAttack, gameWonBy } = require("./display");
 const Gameboard = require("./gameboard");
 const Player = require("./player");
+
+let gameEnd = false
 
 const playerBoard = Gameboard();
 const cpuBoard = Gameboard();
@@ -19,16 +21,22 @@ export const startGame = () => {
 export const gameLoop = () => {
     if(cpuBoard.allSunk() === true){
         console.log('Player won')
+        gameWonBy('You')
+        gameEnd = true
     }else if (playerBoard.allSunk() === true){
         console.log('CPU won')
+        gameWonBy('Computer')
+        gameEnd = true
     }
     playCPU()
 }
 
 export const playCPU = () => {
-    let {result, x, y} = cpu.attack();
-    leftBoardAttack(result, x , y)
-    // gameLoop()
+    if(!gameEnd){
+        let {result, x, y} = cpu.attack();
+        leftBoardAttack(result, x , y)
+        // gameLoop()
+    }
 }
 
 export const playPlayer = xycoords => {
