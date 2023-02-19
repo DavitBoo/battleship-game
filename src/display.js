@@ -1,4 +1,4 @@
-import { gameLoop, playCPU, playPlayer } from "./game"
+import { gameLoop, playCPU, playPlayer, setupTheGame } from "./game"
 
 export const boardPlayerDOM = document.getElementById('board-player')
 export const boardCPUDOM = document.getElementById('board-cpu')
@@ -13,14 +13,35 @@ let dragAndDropCoords
 let dragAndDropDirection
 
 draggedShips.addEventListener('dragend', () => {
-  console.log(ships[0])
-  console.log(dragAndDropCoords)
-  console.log(draggedShips.classList.contains('col'))
+  //console.log(ships[0])
+
+  //console.log(dragAndDropCoords)
+  if(dragAndDropCoords !== null ){
+    let [x,y]  = dragAndDropCoords.split('-')
+    x = parseInt(x)
+    y = parseInt(y)
+  
+    //logic goes a bit wierd here, oposite lets say, but in the game works well
+    if(!draggedShips.classList.contains('col')){
+      dragAndDropDirection = 'v'
+    } else dragAndDropDirection = 'h'
+    console.log(dragAndDropDirection)
+  
+    setupTheGame(x, y, dragAndDropDirection, ships[0])
+  
+    ships.shift()
+    displayDragShips()
+  }
 })
 
 setupBoard.addEventListener('dragenter', (e) => {
-  dragAndDropCoords = e.target.dataset.coords 
-  dragAndDropDirection = e.target.classList
+  if(!e.target.classList.contains('ship-part-on-board')){
+    dragAndDropCoords = e.target.dataset.coords 
+    dragAndDropDirection = e.target.classList
+  }else{
+    dragAndDropCoords = null
+    dragAndDropDirection = null
+  }
 })
 
 draggedShips.addEventListener('dragstart', (e) => {
@@ -28,7 +49,7 @@ draggedShips.addEventListener('dragstart', (e) => {
 })
 
 
-draggedShips.addEventListener('click', () => {
+draggedShips.addEventListener('mouseup', () => {
   draggedShips.classList.toggle('col')
 })
 
@@ -45,16 +66,17 @@ export const displayDragShips = () => {
   // ships.shift()
 }
 
-export const createSetupBoard = () => {
+export const createSetupBoard = gameboard => {
   setupBoard.innerHTML = ''
-  for(let i = 0; i<10 ; i++){
-     for(let j = 0; j < 10; j++){
+  gameboard.forEach((row, i) => {
+    row.forEach((cell, j) => {
       let div = document.createElement('div')
       div.classList.add(`position`)
+      if(cell === true) div.classList.add(`ship-part-on-board`)
       div.setAttribute("data-coords", `${i}-${j}`);
       setupBoard.appendChild(div)
-     }
-  }
+     })
+  })
 }
 
 export const createBoard = gameboardsInfo  =>  {

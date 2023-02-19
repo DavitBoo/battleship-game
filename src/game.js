@@ -11,16 +11,18 @@ const cpu = Player(playerBoard);
 
 displayDragShips();
 
-createSetupBoard()
+createSetupBoard(playerBoard.board)
 
-export const setupTheGame = () => {
-    playerBoard.placeShip (x, y, direction, size)
+export const setupTheGame = (x, y, direction, size) => {
+    console.log(playerBoard.placeShip (x, y, direction, size))
+    createSetupBoard(playerBoard.board)
+    
 }
 
 
 export const startGame = () => {
-
-    playerBoard.randomShips();
+    // do not delete
+  //  playerBoard.randomShips();
     cpuBoard.randomShips();
 
     createBoard([playerBoard.board, cpuBoard.board]);

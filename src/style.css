@@ -109,6 +109,11 @@ button:hover {
     width: 10px;
 }
 
+.ship-part-on-board{
+    background-color: #ffffffa3 !important; 
+    border: 1px solid #000000c1 !important;
+}
+
 
 .container{
     display: flex;

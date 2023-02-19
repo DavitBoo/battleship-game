@@ -20,7 +20,7 @@ const Gameboard = () => {
     //adding "this" to the function it returns the global object, so you can call after the methos inside Gameboard
     function placeShip (x, y, direction, size)  {
         const newShip = Ship(size)
-        if(validPosition(x, y, direction, size)){ 
+        if(checkBoard(x, y, direction, size)){ 
             if(direction === 'h'){
                 for(let i = x; i < x + size; i++) {
                     board[i][y] = true
@@ -32,7 +32,7 @@ const Gameboard = () => {
                     newShip.coords.push([x,j])
 
                 }
-            }
+            }else return false
             ships.push(newShip)
         }
 
@@ -68,7 +68,7 @@ const Gameboard = () => {
                 }
                 return true  //board is empty
             }
-        
+                    
         if(!validPosition(x, y, direction, size)){
             return false
         }
