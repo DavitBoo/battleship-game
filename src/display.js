@@ -1,4 +1,7 @@
-import { gameLoop, playCPU, playPlayer, setupTheGame } from "./game"
+import { gameLoop, placeShipRandom, playCPU, playPlayer, setupTheGame } from "./game"
+
+const randomBtn = document.querySelector('.random-btn')
+const startBtn = document.querySelector('start-btn')
 
 export const boardPlayerDOM = document.getElementById('board-player')
 export const boardCPUDOM = document.getElementById('board-cpu')
@@ -11,6 +14,10 @@ const boardsAllDOM = [boardPlayerDOM, boardCPUDOM]
 let ships = [5,4,3,2,1]
 let dragAndDropCoords 
 let dragAndDropDirection
+
+randomBtn.addEventListener('click', () => {
+  placeShipRandom()
+})
 
 draggedShips.addEventListener('dragend', () => {
   //console.log(ships[0])

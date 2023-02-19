@@ -19,6 +19,12 @@ export const setupTheGame = (x, y, direction, size) => {
     
 }
 
+export const placeShipRandom = () => {
+    playerBoard.boardReset()
+    playerBoard.randomShips();
+    createSetupBoard(playerBoard.board)
+}
+
 
 export const startGame = () => {
     // do not delete

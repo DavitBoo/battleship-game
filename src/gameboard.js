@@ -16,6 +16,14 @@ const Gameboard = () => {
         return arr;
       })();
 
+    function boardReset () {
+        for (let i = 0; i < 10; i++) {
+            for (let j = 0; j < 10; j++) {
+              board[i][j] = false;
+            }
+          }
+    }
+
     //I have not used arrow functions here,  because they do not have their own "this"
     //adding "this" to the function it returns the global object, so you can call after the methos inside Gameboard
     function placeShip (x, y, direction, size)  {
@@ -68,7 +76,7 @@ const Gameboard = () => {
                 }
                 return true  //board is empty
             }
-                    
+
         if(!validPosition(x, y, direction, size)){
             return false
         }
@@ -153,6 +161,7 @@ const Gameboard = () => {
     return {
         allSunk,
         board,
+        boardReset,
         checkBoard,
         placeShip,
         receiveAttack,
