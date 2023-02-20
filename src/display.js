@@ -1,4 +1,6 @@
-import { checkPosition, gameLoop, placeShipRandom, playCPU, playPlayer, setupTheGame, startGame } from "./game"
+import { checkPosition, gameLoop, newGame, placeShipRandom, playCPU, playPlayer, setupTheGame, startGame } from "./game"
+
+const newGameBtn = document.getElementById('start-game')
 
 const randomBtn = document.querySelector('.random-btn')
 const startBtn = document.querySelector('.start-btn')
@@ -17,6 +19,12 @@ const boardsAllDOM = [boardPlayerDOM, boardCPUDOM]
 let ships = [5,4,3,2,1]
 let dragAndDropCoords 
 let dragAndDropDirection
+
+newGameBtn.addEventListener('click', () => {
+  startScreen.classList.remove('hide')
+  overlay.classList.remove('hide')
+  newGame()
+})
 
 startBtn.addEventListener('click', () => {
   startScreen.classList.add('hide')

@@ -13,6 +13,21 @@ displayDragShips();
 
 createSetupBoard(playerBoard.board)
 
+
+export const newGame = () => {
+    let gameEnd = false
+
+    const playerBoard = Gameboard();
+    const cpuBoard = Gameboard();
+    const player = Player(cpuBoard);
+    const cpu = Player(playerBoard);
+
+    displayDragShips();
+
+    createSetupBoard(playerBoard.board)
+
+}
+
 export const setupTheGame = (x, y, direction, size) => {
     playerBoard.placeShip (x, y, direction, size)
     createSetupBoard(playerBoard.board)
