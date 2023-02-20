@@ -9,4 +9,4 @@ import './style.css';
 //     console.log(e.target.classList)
 //   });
 
-startGame();
+// startGame();

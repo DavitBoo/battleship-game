@@ -14,9 +14,15 @@ displayDragShips();
 createSetupBoard(playerBoard.board)
 
 export const setupTheGame = (x, y, direction, size) => {
-    console.log(playerBoard.placeShip (x, y, direction, size))
+    playerBoard.placeShip (x, y, direction, size)
     createSetupBoard(playerBoard.board)
     
+}
+
+export const checkPosition = (x, y, dragAndDropDirection, ship) => {
+    console.log(playerBoard.board)
+    if(playerBoard.checkBoard(x, y, dragAndDropDirection, ship)) return true
+    else return false
 }
 
 export const placeShipRandom = () => {

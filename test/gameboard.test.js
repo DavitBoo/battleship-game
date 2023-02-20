@@ -86,7 +86,7 @@ test('attacking the same location twice', () => {
   expect(board.receiveAttack(0, 1)).toEqual(undefined);
 });
 
-test.only('populate board with random ships', () => {
+test('populate board with random ships', () => {
   const board = Gameboard();
   board.randomShips();
   console.log(board.board)

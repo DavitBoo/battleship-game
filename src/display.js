@@ -1,7 +1,10 @@
-import { gameLoop, placeShipRandom, playCPU, playPlayer, setupTheGame } from "./game"
+import { checkPosition, gameLoop, placeShipRandom, playCPU, playPlayer, setupTheGame, startGame } from "./game"
 
 const randomBtn = document.querySelector('.random-btn')
-const startBtn = document.querySelector('start-btn')
+const startBtn = document.querySelector('.start-btn')
+
+const startScreen = document.querySelector('.start-screen')
+const overlay = document.querySelector('.overlay')
 
 export const boardPlayerDOM = document.getElementById('board-player')
 export const boardCPUDOM = document.getElementById('board-cpu')
@@ -15,15 +18,28 @@ let ships = [5,4,3,2,1]
 let dragAndDropCoords 
 let dragAndDropDirection
 
+startBtn.addEventListener('click', () => {
+  startScreen.classList.add('hide')
+  overlay.classList.add('hide')
+  startGame()
+})
+
 randomBtn.addEventListener('click', () => {
   placeShipRandom()
 })
 
-draggedShips.addEventListener('dragend', () => {
-  //console.log(ships[0])
 
-  //console.log(dragAndDropCoords)
-  if(dragAndDropCoords !== null ){
+setupBoard.addEventListener("dragover", (e) => {
+  e.preventDefault();
+});
+
+setupBoard.addEventListener("dragleave", (e) => {
+  e.preventDefault();
+});
+
+draggedShips.addEventListener('dragend', () => {
+  console.log(checkPosition())
+  if(dragAndDropCoords != null){
     let [x,y]  = dragAndDropCoords.split('-')
     x = parseInt(x)
     y = parseInt(y)
@@ -34,10 +50,13 @@ draggedShips.addEventListener('dragend', () => {
     } else dragAndDropDirection = 'h'
     console.log(dragAndDropDirection)
   
-    setupTheGame(x, y, dragAndDropDirection, ships[0])
+    if(checkPosition(x, y, dragAndDropDirection, ships[0])){
+    
+      setupTheGame(x, y, dragAndDropDirection, ships[0])
   
-    ships.shift()
-    displayDragShips()
+      ships.shift()
+      displayDragShips()
+    }
   }
 })
 
@@ -52,6 +71,7 @@ setupBoard.addEventListener('dragenter', (e) => {
 })
 
 draggedShips.addEventListener('dragstart', (e) => {
+  e.target.classList.add('dragging');
   console.log('you picked me up!')
 })
 
@@ -89,10 +109,14 @@ export const createSetupBoard = gameboard => {
 export const createBoard = gameboardsInfo  =>  {
     boardsAllDOM.forEach((board, index) => {
         board.innerHTML = ''
+        console.log(gameboardsInfo)
         gameboardsInfo[index].forEach((row, i) => {
             row.forEach((cell, j) => {
                 let div = document.createElement('div')
                 div.classList.add(`position`)
+                if(index === 0 && cell === true){
+                  div.classList.add(`there-is-ship`)
+                }
                 div.setAttribute("data-coords", `${i}-${j}`);
                 board.appendChild(div)
             })
