@@ -21,14 +21,4 @@ const Ship = (shipLength) => {
     return {timesHit, sunk, shipLength, hit, isSunk, coords}
 }
 
-// const longShip = Ship(5)
-// console.log(longShip.hit())
-// console.log(longShip.hit())
-// console.log(longShip.hit())
-// console.log(longShip.isSunk())
-// console.log(longShip.hit())
-// console.log(longShip.isSunk())
-// console.log(longShip.hit())
-// console.log(longShip.isSunk())
-
 module.exports = Ship

@@ -1,4 +1,4 @@
-const { createBoard, boardCoordinate, leftBoardAttack, gameWonBy, createSetupBoard, displayDragShips, ships } = require("./display");
+const { createBoard, boardCoordinate, leftBoardAttack, gameWonBy, createSetupBoard, displayDragShips } = require("./display");
 const Gameboard = require("./gameboard");
 const Player = require("./player");
 
@@ -15,14 +15,10 @@ createSetupBoard(playerBoard.board)
 
 
 export const newGame = () => {
-    let gameEnd = false
+    gameEnd = false
 
-    ships = [5,4,3,2,1]     //display.js
-
-    const playerBoard = Gameboard();
-    const cpuBoard = Gameboard();
-    const player = Player(cpuBoard);
-    const cpu = Player(playerBoard);
+    playerBoard.boardReset()
+    cpuBoard.boardReset()
 
     displayDragShips();
 

@@ -41,10 +41,6 @@ const Player = board => {
           return Math.floor(Math.random() * allTheCoords.length);
     }
 
-    // const selectedByPlayer = (x, y) => {
-    //     return allTheCoords.find(coord => coord[0] === x && coord[1] === y)
-        
-    // }
 
     const attack = (coords = randomNum()) => {
         [x,y] = allTheCoords.splice(coords, 1)[0]
