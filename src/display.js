@@ -16,7 +16,7 @@ const draggedShips = document.querySelector('.ships')
 
 const boardsAllDOM = [boardPlayerDOM, boardCPUDOM]
 
-let ships = [5,4,3,2,1]
+export let ships = [5,4,3,2,1]
 let dragAndDropCoords 
 let dragAndDropDirection
 
@@ -26,14 +26,18 @@ newGameBtn.addEventListener('click', () => {
   newGame()
 })
 
-startBtn.addEventListener('click', () => {
-  startScreen.classList.add('hide')
-  overlay.classList.add('hide')
-  startGame()
-})
+const makeStartBtnAvailable = () => {
+  startBtn.addEventListener('click', () => {
+    startScreen.classList.add('hide')
+    overlay.classList.add('hide')
+    startGame()
+  })
+
+}
 
 randomBtn.addEventListener('click', () => {
   placeShipRandom()
+  makeStartBtnAvailable()
 })
 
 
@@ -64,6 +68,8 @@ draggedShips.addEventListener('dragend', () => {
   
       ships.shift()
       displayDragShips()
+
+      if(ships.length === 0) makeStartBtnAvailable()
     }
   }
 })
